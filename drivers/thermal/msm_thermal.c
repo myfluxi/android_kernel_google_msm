@@ -87,7 +87,8 @@ static void check_temp(struct work_struct *work)
 
 	if (freq_buffer != freq_max) {
 		freq_buffer = freq_max;
-		msm_cpufreq_set_freq_limits(cpu, MSM_CPUFREQ_NO_LIMIT, freq_max);
+		for_each_possible_cpu(cpu)
+			msm_cpufreq_set_freq_limits(cpu, MSM_CPUFREQ_NO_LIMIT, freq_max);
 		pr_info("msm_thermal: CPU temp: %luC, max: %dMHz, polling: %dms",
 			temp, freq_max/1000, jiffies_to_msecs(polling));
 	}

@@ -231,9 +231,11 @@ static void __ref mako_hotplug_late_resume(struct early_suspend *handler)
 		}
 	}
 	/* restore default max frequency */
-	msm_cpufreq_set_freq_limits(cpu, policy->min, policy->max);
+	for_each_possible_cpu(cpu)
+		msm_cpufreq_set_freq_limits(cpu, policy->min, policy->max);
 
-	pr_info("mako_hotplug: Late resume - restore cpu%d max frequency\n", 0);
+	pr_info("mako_hotplug: Late resume - restore max frequency: %dMHz\n",
+	     policy->max / 1000);
 
 	/* new time_stamp and online_cpu because all cpus were just onlined */
 	stats.time_stamp = ktime_to_ms(ktime_get());

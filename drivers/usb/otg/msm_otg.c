@@ -71,7 +71,7 @@
 #define USB_PHY_1P8_LPM_LOAD	4000	/* uA */
 
 #define USB_PHY_VDD_DIG_VOL_NONE	0 /*uV */
-#define USB_PHY_VDD_DIG_VOL_MIN	1045000 /* uV */
+#define USB_PHY_VDD_DIG_VOL_MIN	945000 /* uV */
 #define USB_PHY_VDD_DIG_VOL_MAX	1320000 /* uV */
 
 static DECLARE_COMPLETION(pmic_vbus_init);
